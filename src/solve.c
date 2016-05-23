@@ -36,12 +36,12 @@ int solve(int a, int b, int c, long double d, long double *x1, long double *x2)
 		*x2 = (-b - sqrt(d))/(2*a);
 		return TWO_ROOTS;
 	}
-	else if (d == 0)
+	if (d == 0)
 	{
 		*x1 = *x2 = -1.*b/(2*a);
 		return ONE_ROOT;
 	}
-	else if (d < 0)
+	if (d < 0)
 		return NO_ROOTS;
 	return ERROR;
 }
