@@ -22,20 +22,28 @@ int main()
 	long double d = discriminant(a, b, c);
 	flag = prov(a, b, c, &x1, &x2);
 	if (flag == ONE_ROOT)
-			printf("Уравнение вырождается в линейное:\nx = %Lf\n", x1);
-		else if (flag == ANY_ROOTS)
-			printf("Все коэффициенты равны нулю:\nx - любое число\n");
-		else if (flag == NO_DECISIONS)
-			printf("Нет решения\n");		
-	else
 	{
-		flag = solve(a, b, c, d, &x1, &x2);
-		if (flag == TWO_ROOTS)
-			printf("D > 0; 2 корня:\nx1 = %Lf\nx2 = %Lf\n", x1, x2);
-		else if (flag == ONE_ROOT)
-			printf("D = 0; 1 корень:\nx = %Lf\n", x1);
-		else if (flag == NO_ROOTS)
-			printf("D < 0; нет корней.\n");		
+		printf("Уравнение вырождается в линейное:\nx = %Lf\n", x1);
+		return SECCESS;
 	}
+	if (flag == ANY_ROOTS)
+	{	
+		printf("Все коэффициенты равны нулю:\nx - любое число\n");
+		return SECCESS;
+	}
+	if (flag == NO_DECISIONS)
+	{	
+		printf("Нет решения\n");		
+		return SECCESS;
+	}		 
+	flag = solve(a, b, c, d, &x1, &x2);
+	if (flag == ERROR)
+		printf("Произошла непредвиденная ошибка\n");
+	if (flag == TWO_ROOTS)
+			printf("D > 0; 2 корня:\nx1 = %Lf\nx2 = %Lf\n", x1, x2);
+	if (flag == ONE_ROOT)
+			printf("D = 0; 1 корень:\nx = %Lf\n", x1);
+	if (flag == NO_ROOTS)
+			printf("D < 0; нет корней.\n");	
 	return SECCESS;
 }
